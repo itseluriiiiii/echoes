@@ -14,13 +14,13 @@ const Header: React.FC = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-sm border-b border-foreground/10">
-      <div className="container max-w-3xl mx-auto px-4">
-        <div className="flex items-center justify-between h-14">
-          <Link to="/" className="font-pixel text-[10px] text-primary hover:text-primary/80 transition-colors">
-            LAFAS
+      <div className="container max-w-3xl mx-auto px-2 sm:px-4">
+        <div className="flex items-center justify-between h-12 sm:h-14">
+          <Link to="/" className="font-pixel text-[8px] sm:text-[10px] text-primary hover:text-primary/80 transition-colors">
+            Echoes
           </Link>
           
-          <nav className="flex items-center gap-1">
+          <nav className="flex items-center gap-1 sm:gap-2">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
@@ -30,13 +30,13 @@ const Header: React.FC = () => {
                   key={item.path}
                   to={item.path}
                   className={cn(
-                    "inline-flex items-center gap-1.5 px-3 py-1.5 font-pixel text-[8px] uppercase transition-colors",
+                    "inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-2 sm:py-1.5 font-pixel text-[7px] sm:text-[8px] uppercase transition-colors min-h-[44px] sm:min-h-auto",
                     isActive
                       ? "text-primary"
                       : "text-muted-foreground hover:text-foreground"
                   )}
                 >
-                  <Icon className="w-3 h-3" />
+                  <Icon className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span className="hidden sm:inline">{item.label}</span>
                 </Link>
               );

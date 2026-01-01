@@ -23,10 +23,10 @@ const pixelButtonVariants = cva(
           "bg-tough-love text-tough-love-foreground border-tough-love/80 hover:bg-tough-love/90 shadow-[4px_4px_0px_hsl(var(--tough-love)/0.3)] hover:shadow-[2px_2px_0px_hsl(var(--tough-love)/0.3)] active:shadow-none",
       },
       size: {
-        default: "px-6 py-3",
-        sm: "px-4 py-2 text-[10px]",
-        lg: "px-8 py-4",
-        icon: "h-10 w-10",
+        default: "px-4 sm:px-6 py-2 sm:py-3 text-[10px] sm:text-xs",
+        sm: "px-3 sm:px-4 py-2 text-[9px] sm:text-[10px]",
+        lg: "px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm",
+        icon: "h-9 w-9 sm:h-10 sm:w-10",
       },
     },
     defaultVariants: {

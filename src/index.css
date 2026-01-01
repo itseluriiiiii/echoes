@@ -6,29 +6,29 @@
 
 @layer base {
   :root {
-    /* Dark muted night sky palette */
-    --background: 230 25% 8%;
+    /* Pure black background */
+    --background: 0 0% 0%;
     --foreground: 45 30% 90%;
 
     /* Pixel card surfaces */
-    --card: 230 20% 12%;
+    --card: 0 0% 5%;
     --card-foreground: 45 30% 90%;
 
-    --popover: 230 20% 14%;
+    --popover: 0 0% 8%;
     --popover-foreground: 45 30% 90%;
 
-    /* Warm amber primary */
-    --primary: 35 85% 55%;
-    --primary-foreground: 230 25% 8%;
+    /* Dark red primary */
+    --primary: 0 60% 47%;
+    --primary-foreground: 0 0% 0%;
 
     /* Muted purple-gray secondary */
     --secondary: 260 15% 20%;
     --secondary-foreground: 45 30% 85%;
 
-    --muted: 230 15% 18%;
+    --muted: 0 0% 18%;
     --muted-foreground: 230 15% 55%;
 
-    --accent: 35 70% 45%;
+    --accent: 0 50% 40%;
     --accent-foreground: 45 30% 95%;
 
     --destructive: 0 62% 50%;
@@ -42,38 +42,38 @@
     --tough-love: 25 90% 55%;
     --tough-love-foreground: 25 90% 10%;
 
-    --border: 230 20% 20%;
-    --input: 230 20% 15%;
-    --ring: 35 85% 55%;
+    --border: 0 0% 20%;
+    --input: 0 0% 10%;
+    --ring: 0 60% 47%;
 
     --radius: 0px;
 
     /* Pixel shadows */
-    --pixel-shadow: 4px 4px 0px hsl(230 25% 5%);
-    --pixel-shadow-hover: 2px 2px 0px hsl(230 25% 5%);
-    --pixel-glow: 0 0 20px hsl(35 85% 55% / 0.2);
+    --pixel-shadow: 4px 4px 0px hsl(0 0% 0%);
+    --pixel-shadow-hover: 2px 2px 0px hsl(0 0% 0%);
+    --pixel-glow: 0 0 20px hsl(0 60% 47% / 0.2);
   }
 
   .dark {
-    --background: 230 25% 8%;
+    --background: 0 0% 0%;
     --foreground: 45 30% 90%;
-    --card: 230 20% 12%;
+    --card: 0 0% 5%;
     --card-foreground: 45 30% 90%;
-    --popover: 230 20% 14%;
+    --popover: 0 0% 8%;
     --popover-foreground: 45 30% 90%;
-    --primary: 35 85% 55%;
-    --primary-foreground: 230 25% 8%;
+    --primary: 0 60% 47%;
+    --primary-foreground: 0 0% 0%;
     --secondary: 260 15% 20%;
     --secondary-foreground: 45 30% 85%;
-    --muted: 230 15% 18%;
+    --muted: 0 0% 18%;
     --muted-foreground: 230 15% 55%;
-    --accent: 35 70% 45%;
+    --accent: 0 50% 40%;
     --accent-foreground: 45 30% 95%;
     --destructive: 0 62% 50%;
     --destructive-foreground: 45 30% 95%;
-    --border: 230 20% 20%;
-    --input: 230 20% 15%;
-    --ring: 35 85% 55%;
+    --border: 0 0% 20%;
+    --input: 0 0% 10%;
+    --ring: 0 60% 47%;
   }
 }
 
@@ -181,5 +181,75 @@
 
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+
+/* Newton's Cradle Preloader */
+.newtons-cradle {
+  --uib-size: 50px;
+  --uib-speed: 1.2s;
+  --uib-color: hsl(var(--primary));
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--uib-size);
+  height: var(--uib-size);
+}
+
+.newtons-cradle__dot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 25%;
+  transform-origin: center top;
+}
+
+.newtons-cradle__dot::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 25%;
+  border-radius: 50%;
+  background-color: var(--uib-color);
+}
+
+.newtons-cradle__dot:first-child {
+  animation: swing var(--uib-speed) linear infinite;
+}
+
+.newtons-cradle__dot:last-child {
+  animation: swing2 var(--uib-speed) linear infinite;
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: ease-out;
+  }
+  25% {
+    transform: rotate(70deg);
+    animation-timing-function: ease-in;
+  }
+  50% {
+    transform: rotate(0deg);
+    animation-timing-function: linear;
+  }
+}
+
+@keyframes swing2 {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: linear;
+  }
+  50% {
+    transform: rotate(0deg);
+    animation-timing-function: ease-out;
+  }
+  75% {
+    transform: rotate(-70deg);
+    animation-timing-function: ease-in;
   }
 }

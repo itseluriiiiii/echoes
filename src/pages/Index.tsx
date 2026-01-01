@@ -9,45 +9,45 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Hero Section */}
-      <section className="flex-1 flex items-center justify-center px-4 py-20">
-        <div className="max-w-2xl mx-auto text-center space-y-8 animate-fade-in">
+      <section className="flex-1 flex items-center justify-center px-3 sm:px-4 py-12 sm:py-20">
+        <div className="max-w-2xl mx-auto text-center space-y-6 sm:space-y-8 animate-fade-in">
           {/* Pixel art decorative element */}
-          <div className="flex justify-center gap-2 mb-6">
-            <span className="w-2 h-2 bg-primary animate-float" style={{ animationDelay: "0s" }} />
-            <span className="w-2 h-2 bg-emotional animate-float" style={{ animationDelay: "0.2s" }} />
-            <span className="w-2 h-2 bg-practical animate-float" style={{ animationDelay: "0.4s" }} />
-            <span className="w-2 h-2 bg-tough-love animate-float" style={{ animationDelay: "0.6s" }} />
-            <span className="w-2 h-2 bg-primary animate-float" style={{ animationDelay: "0.8s" }} />
+          <div className="flex justify-center gap-1.5 sm:gap-2 mb-4 sm:mb-6">
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary animate-float" style={{ animationDelay: "0s" }} />
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-emotional animate-float" style={{ animationDelay: "0.2s" }} />
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-practical animate-float" style={{ animationDelay: "0.4s" }} />
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-tough-love animate-float" style={{ animationDelay: "0.6s" }} />
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary animate-float" style={{ animationDelay: "0.8s" }} />
           </div>
 
-          <h1 className="font-pixel text-xl sm:text-2xl md:text-3xl text-foreground leading-relaxed">
+          <h1 className="font-pixel text-base sm:text-xl md:text-2xl lg:text-3xl text-foreground leading-relaxed">
             Life Advice<br />
             <span className="text-primary">From Strangers</span>
           </h1>
 
-          <p className="font-body text-xl sm:text-2xl text-muted-foreground max-w-md mx-auto leading-relaxed">
+          <p className="font-body text-sm sm:text-lg md:text-xl text-muted-foreground max-w-md mx-auto leading-relaxed">
             Ask the question you can't ask the people you know. 
             Receive anonymous advice from strangers who understand.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2 sm:pt-4">
             <Link to="/ask">
-              <PixelButton className="gap-2 min-w-[160px]">
-                <PenLine className="w-4 h-4" />
-                Ask a Question
+              <PixelButton size="sm" className="gap-2 w-full sm:w-auto sm:min-w-[160px]">
+                <PenLine className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="text-[10px] sm:text-xs">Ask a Question</span>
               </PixelButton>
             </Link>
             <Link to="/browse">
-              <PixelButton variant="secondary" className="gap-2 min-w-[160px]">
-                <MessageCircle className="w-4 h-4" />
-                Browse & Advise
+              <PixelButton variant="secondary" size="sm" className="gap-2 w-full sm:w-auto sm:min-w-[160px]">
+                <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="text-[10px] sm:text-xs">Browse & Advise</span>
               </PixelButton>
             </Link>
           </div>
 
           {/* How it works */}
-          <div className="grid sm:grid-cols-3 gap-4 pt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-8 sm:pt-12">
             <PixelCard className="text-center space-y-2">
               <div className="w-8 h-8 mx-auto flex items-center justify-center bg-primary/20 text-primary">
                 <PenLine className="w-4 h-4" />

@@ -25,15 +25,15 @@ const AskQuestionForm: React.FC<AskQuestionFormProps> = ({ onSubmit, isLoading }
   const isValid = question.trim().length > 0 && question.length <= MAX_CHARS;
 
   return (
-    <PixelCard variant="glow" className="space-y-4">
-      <div className="space-y-2">
-        <h3 className="font-pixel text-sm text-primary">Ask a Stranger</h3>
-        <p className="font-body text-muted-foreground">
+    <PixelCard variant="glow" className="space-y-3 sm:space-y-4">
+      <div className="space-y-1 sm:space-y-2">
+        <h3 className="font-pixel text-xs sm:text-sm text-primary">Ask a Stranger</h3>
+        <p className="font-body text-sm sm:text-base text-muted-foreground">
           What's the one thing you can't ask the people you know?
         </p>
       </div>
       
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
         <PixelInput
           placeholder="Type your question..."
           value={question}

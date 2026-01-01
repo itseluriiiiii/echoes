@@ -22,13 +22,13 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
   counts,
 }) => {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-1.5 sm:gap-2">
       {tabs.map((tab) => (
         <button
           key={tab.key}
           onClick={() => onCategoryChange(tab.key)}
           className={cn(
-            "inline-flex items-center gap-1.5 px-3 py-2 font-pixel text-[10px] uppercase border-2 transition-all duration-150",
+            "inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 sm:py-2 font-pixel text-[8px] sm:text-[10px] uppercase border-2 transition-all duration-150 min-h-[44px] sm:min-h-auto",
             activeCategory === tab.key
               ? "bg-foreground/10 border-foreground/30 text-foreground"
               : "bg-transparent border-foreground/10 text-muted-foreground hover:border-foreground/20 hover:text-foreground/70"
@@ -36,7 +36,7 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
         >
           {tab.icon}
           {tab.label}
-          <span className="ml-1 opacity-60">({counts[tab.key]})</span>
+          <span className="ml-0.5 sm:ml-1 opacity-60">({counts[tab.key]})</span>
         </button>
       ))}
     </div>

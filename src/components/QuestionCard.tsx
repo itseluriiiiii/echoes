@@ -25,13 +25,13 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
       className="group"
       onClick={onClick}
     >
-      <div className="space-y-4">
-        <p className="font-body text-xl leading-relaxed text-foreground/90">
+      <div className="space-y-3 sm:space-y-4">
+        <p className="font-body text-base sm:text-lg md:text-xl leading-relaxed text-foreground/90">
           "{question}"
         </p>
         
         <div className="flex items-center justify-between pt-2 border-t border-foreground/10">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <span className="inline-flex items-center gap-1.5 font-pixel text-[10px] text-muted-foreground uppercase">
               <MessageCircle className="w-3 h-3" />
               {replyCount} {replyCount === 1 ? "reply" : "replies"}

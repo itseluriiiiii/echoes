@@ -33,7 +33,7 @@ const AdviceReply: React.FC<AdviceReplyProps> = ({
   return (
     <div
       className={cn(
-        "relative pl-4 py-3 border-l-2 animate-fade-in",
+        "relative pl-3 sm:pl-4 py-2 sm:py-3 border-l-2 animate-fade-in",
         category === "emotional" && "border-emotional/50",
         category === "practical" && "border-practical/50",
         category === "tough-love" && "border-tough-love/50",

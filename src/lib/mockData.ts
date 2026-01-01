@@ -5,6 +5,7 @@ export interface Reply {
   content: string;
   category: CategoryType;
   createdAt: Date;
+  question_id?: string;
 }
 
 export interface Question {
@@ -126,18 +127,18 @@ export const addQuestion = (questionText: string): Question => {
   return newQuestion;
 };
 
-// Function to add a reply (randomly categorized for demo)
-export const addReply = (questionId: string, content: string): Reply | null => {
+// Function to add a reply with specified category
+export const addReply = (questionId: string, content: string, category?: CategoryType): Reply | null => {
   const question = mockQuestions.find(q => q.id === questionId);
   if (!question) return null;
 
   const categories: CategoryType[] = ["emotional", "practical", "tough-love"];
-  const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+  const replyCategory = category || categories[Math.floor(Math.random() * categories.length)];
 
   const newReply: Reply = {
     id: `${questionId}-${Date.now()}`,
     content,
-    category: randomCategory,
+    category: replyCategory,
     createdAt: new Date(),
   };
   

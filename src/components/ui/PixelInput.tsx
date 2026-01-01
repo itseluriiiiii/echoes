@@ -16,12 +16,12 @@ const PixelInput = React.forwardRef<HTMLInputElement, PixelInputProps>(
         <input
           type={type}
           className={cn(
-            "flex w-full bg-input border-2 border-foreground/20 px-4 py-3 font-body text-lg text-foreground",
+            "flex w-full bg-input border-2 border-foreground/20 px-3 sm:px-4 py-2 sm:py-3 font-body text-base sm:text-lg text-foreground",
             "placeholder:text-muted-foreground",
             "focus:outline-none focus:border-primary focus:shadow-[0_0_10px_hsl(var(--primary)/0.2)]",
             "disabled:cursor-not-allowed disabled:opacity-50",
             "transition-all duration-150",
-            showCharCount && "pr-16",
+            showCharCount && "pr-14 sm:pr-16",
             className
           )}
           ref={ref}

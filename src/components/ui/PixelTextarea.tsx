@@ -17,7 +17,7 @@ const PixelTextarea = React.forwardRef<HTMLTextAreaElement, PixelTextareaProps>(
       <div className="relative w-full">
         <textarea
           className={cn(
-            "flex min-h-[120px] w-full bg-input border-2 border-foreground/20 px-4 py-3 font-body text-lg text-foreground resize-none",
+            "flex min-h-[100px] sm:min-h-[120px] w-full bg-input border-2 border-foreground/20 px-3 sm:px-4 py-2 sm:py-3 font-body text-base sm:text-lg text-foreground resize-none",
             "placeholder:text-muted-foreground",
             "focus:outline-none focus:border-primary focus:shadow-[0_0_10px_hsl(var(--primary)/0.2)]",
             "disabled:cursor-not-allowed disabled:opacity-50",

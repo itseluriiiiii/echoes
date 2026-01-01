@@ -8,17 +8,15 @@ import { AdviceReply } from "@/components/AdviceReply";
 import { ReplyForm } from "@/components/ReplyForm";
 import { Disclaimer } from "@/components/Disclaimer";
 import { CategoryType } from "@/components/ui/CategoryBadge";
-import { mockQuestions, addReply } from "@/lib/mockData";
+import { useQuestion, useCreateReply } from "@/hooks/useQuestions";
 import { toast } from "@/hooks/use-toast";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Loader2 } from "lucide-react";
 
 const QuestionView: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [activeCategory, setActiveCategory] = useState<CategoryType | "all">("all");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [, forceUpdate] = useState({});
-
-  const question = mockQuestions.find((q) => q.id === id);
+  const { data: question, isLoading, error } = useQuestion(id || "");
+  const { mutate: createReply, isPending: isSubmitting } = useCreateReply();
 
   const isExpired = question ? question.expiresAt.getTime() < Date.now() : false;
 
@@ -38,35 +36,52 @@ const QuestionView: React.FC = () => {
     };
   }, [question]);
 
-  const handleReplySubmit = async (content: string) => {
-    if (!question) return;
+  const handleReplySubmit = (content: string, category: CategoryType) => {
+    if (!id) return;
     
-    setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 600));
-    
-    addReply(question.id, content);
-    setIsSubmitting(false);
-    forceUpdate({});
-    
-    toast({
-      title: "Advice shared",
-      description: "Your anonymous advice has been posted.",
-    });
+    createReply(
+      { questionId: id, content, category },
+      {
+        onSuccess: () => {
+          toast({
+            title: "Advice shared",
+            description: "Your anonymous advice has been posted.",
+          });
+        },
+        onError: () => {
+          toast({
+            title: "Error",
+            description: "Failed to post advice. Please try again.",
+            variant: "destructive",
+          });
+        },
+      }
+    );
   };
 
-  if (!question) {
+  if (isLoading) {
     return (
-      <div className="min-h-screen pt-20 pb-12 px-4">
+      <div className="min-h-screen pt-16 sm:pt-20 pb-8 sm:pb-12 px-3 sm:px-4">
         <div className="max-w-2xl mx-auto text-center py-12">
-          <h1 className="font-pixel text-lg text-foreground mb-4">
+          <Loader2 className="w-6 h-6 animate-spin mx-auto text-primary" />
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !question) {
+    return (
+      <div className="min-h-screen pt-16 sm:pt-20 pb-8 sm:pb-12 px-3 sm:px-4">
+        <div className="max-w-2xl mx-auto text-center py-8 sm:py-12">
+          <h1 className="font-pixel text-base sm:text-lg text-foreground mb-3 sm:mb-4">
             Question Not Found
           </h1>
-          <p className="font-body text-lg text-muted-foreground mb-6">
+          <p className="font-body text-sm sm:text-lg text-muted-foreground mb-4 sm:mb-6">
             This question may have expired or doesn't exist.
           </p>
           <Link to="/browse">
-            <PixelButton variant="secondary">
-              <ArrowLeft className="w-4 h-4 mr-2" />
+            <PixelButton variant="secondary" size="sm">
+              <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
               Browse Questions
             </PixelButton>
           </Link>
@@ -76,27 +91,27 @@ const QuestionView: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen pt-20 pb-12 px-4">
-      <div className="max-w-2xl mx-auto space-y-6">
+    <div className="min-h-screen pt-16 sm:pt-20 pb-8 sm:pb-12 px-3 sm:px-4">
+      <div className="max-w-2xl mx-auto space-y-4 sm:space-y-6">
         {/* Back Button */}
         <Link
           to="/browse"
-          className="inline-flex items-center gap-2 font-pixel text-[10px] text-muted-foreground hover:text-foreground transition-colors"
+          className="inline-flex items-center gap-1.5 sm:gap-2 font-pixel text-[8px] sm:text-[10px] text-muted-foreground hover:text-foreground transition-colors"
         >
-          <ArrowLeft className="w-3 h-3" />
+          <ArrowLeft className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
           Back to Browse
         </Link>
 
         {/* Question Card */}
         <PixelCard variant="glow" className="animate-fade-in">
-          <div className="space-y-4">
-            <p className="font-body text-2xl leading-relaxed text-foreground">
+          <div className="space-y-3 sm:space-y-4">
+            <p className="font-body text-lg sm:text-2xl leading-relaxed text-foreground">
               "{question.question}"
             </p>
             <div className="flex items-center justify-between pt-2 border-t border-foreground/10">
               <TimeRemaining expiresAt={question.expiresAt} />
               {isExpired && (
-                <span className="font-pixel text-[10px] text-muted-foreground uppercase">
+                <span className="font-pixel text-[8px] sm:text-[10px] text-muted-foreground uppercase">
                   Read-only
                 </span>
               )}
@@ -123,10 +138,10 @@ const QuestionView: React.FC = () => {
         )}
 
         {/* Replies */}
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {filteredReplies.length === 0 ? (
-            <div className="text-center py-8 animate-fade-in">
-              <p className="font-body text-lg text-muted-foreground">
+            <div className="text-center py-6 sm:py-8 animate-fade-in">
+              <p className="font-body text-sm sm:text-lg text-muted-foreground">
                 {question.replies.length === 0
                   ? "No advice yet. Be the first to share your perspective."
                   : "No advice in this category."}
@@ -150,7 +165,7 @@ const QuestionView: React.FC = () => {
         </div>
 
         {/* Disclaimer */}
-        <Disclaimer className="mt-8" />
+        <Disclaimer className="mt-6 sm:mt-8" />
       </div>
     </div>
   );
